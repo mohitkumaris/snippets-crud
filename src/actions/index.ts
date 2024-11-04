@@ -1,6 +1,7 @@
 "use server";
+
 import { db } from "@/app/db";
-import { error } from "console";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 /*
@@ -40,7 +41,8 @@ export async function createSnippet(
       };
     }
   }
-
+  // re render the home page by using revalidatePath
+  revalidatePath("/");
   redirect("/");
 }
 /*
